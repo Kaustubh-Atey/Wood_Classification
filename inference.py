@@ -56,7 +56,6 @@ img_batch = np.expand_dims(img_array, axis=0)
 
 img_preprocessed = preprocess_input(img_batch)
 prediction = model.predict(img_preprocessed)[0]
-print(prediction)
 id = np.argmax(prediction)
 score = prediction[id]
 classes = {'Acacia': 0, 'Bamboo': 1, 'Birch': 2, 'Cork': 3, 'Hickory': 4, 'Maple': 5, 'Oak': 6, 'Walnut': 7}  #test_generator.class_indices
