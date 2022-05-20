@@ -2,6 +2,10 @@
 
 Steps for Implementing the Wood Classification Model
 
+Download the weights folder from the drive
+
+link - https://drive.google.com/drive/folders/1JZ2y4vY_nL82vXl3rsd9LBVyt5I6QiKK?usp=sharing
+
 1. Store the output of the segmentation model in Test_Images folder (the floor.jpg image)
 
 2. In the cropped.py file (line no:-5 - change the img_name to the output of the segmentation model(floor img) i.e stored in the Test_Images folder)
