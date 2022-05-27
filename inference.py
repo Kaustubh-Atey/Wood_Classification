@@ -15,6 +15,9 @@ from tensorflow.keras import layers
 from tensorflow.keras.applications.resnet50 import (ResNet50,
                                                     decode_predictions,
                                                     preprocess_input)
+
+from tensorflow.keras.applications.convnext import ConvNeXtBase, preprocess_input
+
 from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img
@@ -23,7 +26,7 @@ from tqdm import tqdm
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-base_model = ResNet50(include_top=False, weights='imagenet')
+base_model = ConvNeXtBase(include_top=False, weights='imagenet',  input_shape = (224,224,3))
 
 x = base_model.output
 x = layers.GlobalAveragePooling2D()(x)
@@ -37,7 +40,7 @@ for layer in base_model.layers:
   layer.trainable = False
 
 model = Model(inputs=base_model.input, outputs=out)
-model.load_weights('May-17-2022')
+model.load_weights('May-20-2022')
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', 
               metrics=[
@@ -47,7 +50,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy',
               tfa.metrics.F1Score(name='f1_score', num_classes = 8)
               ]) 
 
-image_path = 'Cropped_Images/oak_floor.jpg'
+image_path = 'Cropped_Images/office_floor.jpg'
 
 
 img = image.load_img(image_path, target_size=(224, 224))
