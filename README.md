@@ -4,7 +4,7 @@ Steps for Implementing the Wood Classification Model
 
 Download the weights folder from the drive
 
-link - https://drive.google.com/drive/folders/1JZ2y4vY_nL82vXl3rsd9LBVyt5I6QiKK?usp=sharing
+link - https://drive.google.com/drive/folders/1ZImIzPwQe9O2taLZb6uIZE_gqjyqUgfi?usp=sharing
 
 1. Store the output of the segmentation model in Test_Images folder (the floor.jpg image)
 
