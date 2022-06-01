@@ -40,7 +40,7 @@ for layer in base_model.layers:
   layer.trainable = False
 
 model = Model(inputs=base_model.input, outputs=out)
-model.load_weights('May-20-2022')
+model.load_weights('Jun-01-2022')
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', 
               metrics=[
@@ -55,7 +55,9 @@ image_path = 'Cropped_Images/office_floor.jpg'
 
 img = image.load_img(image_path, target_size=(224, 224))
 img_array = image.img_to_array(img)
-img_batch = np.expand_dims(img_array, axis=0)
+gray_img = cv2.cvtColor(img_array,cv2.COLOR_BGR2GRAY)
+gray_img_array = np.dstack([gray_img, gray_img, gray_img])
+img_batch = np.expand_dims(gray_img_array, axis=0)
 
 img_preprocessed = preprocess_input(img_batch)
 prediction = model.predict(img_preprocessed)[0]
