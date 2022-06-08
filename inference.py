@@ -77,7 +77,7 @@ val_list, key_list = list(classes.values()), list(classes.keys())
 position = val_list.index(id)
 pred = key_list[position]
 
-print('Prediction: ', key_list[position], '; Confidence: ', score)
+#print('Prediction: ', key_list[position], '; Confidence: ', score)
 
 main_classes = ['Acacia', 'Bamboo', 'Birch', 'Cork' ,'Hickory', 'Maple', 'Oak', 'Walnut']
 
