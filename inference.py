@@ -32,7 +32,9 @@ x = base_model.output
 x = layers.GlobalAveragePooling2D()(x)
 x = layers.Dense(1024, activation='relu')(x)
 x = layers.Dense(512, activation='relu')(x)
-out = layers.Dense(8, activation='softmax')(x)
+x = layers.Dense(256, activation='relu')(x)       
+x = layers.Dense(128, activation='relu')(x)       
+out = layers.Dense(21, activation='softmax')(x)
 
 model = Model(inputs=base_model.input, outputs=out)
 
@@ -40,7 +42,7 @@ for layer in base_model.layers:
   layer.trainable = False
 
 model = Model(inputs=base_model.input, outputs=out)
-model.load_weights('Jun-01-2022')
+model.load_weights('Jun-07-2022')
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', 
               metrics=[
@@ -63,10 +65,26 @@ img_preprocessed = preprocess_input(img_batch)
 prediction = model.predict(img_preprocessed)[0]
 id = np.argmax(prediction)
 score = prediction[id]
-classes = {'Acacia': 0, 'Bamboo': 1, 'Birch': 2, 'Cork': 3, 'Hickory': 4, 'Maple': 5, 'Oak': 6, 'Walnut': 7}  #test_generator.class_indices
+
+classes = {'AcaciaEngineeredWood': 0, 'AcaciaPrefinishedWood': 1, 'AcaciaSolidWood': 2, 
+           'BambooEngineeredWood': 3, 'BambooSolidWood': 4, 'BirchEngineeredWood': 5, 'BirchPrefinishedWood': 6,
+           'BirchSolidWood': 7, 'CorkEngineeredWood':8, 'CorkSolidWood': 9, 'HickoryEngineeredWood':10,
+           'HickoryPrefinishedWood':11, 'HickorySolidWood':12, 'MapleEngineeredWood':13, 'MaplePrefinishedWood':14,
+           'MapleSolidWood':15, 'OakEngineeredWood':16, 'OakPrefinishedWood':17, 'OakSolidWood':18,
+           'WalnutEngineeredWood':19, 'WalnutPrefinishedWood':20}  
 
 val_list, key_list = list(classes.values()), list(classes.keys())
 position = val_list.index(id)
 pred = key_list[position]
 
 print('Prediction: ', key_list[position], '; Confidence: ', score)
+
+main_classes = ['Acacia', 'Bamboo', 'Birch', 'Cork' ,'Hickory', 'Maple', 'Oak', 'Walnut']
+
+for i in main_classes:
+
+  if i in pred:
+
+    print('Prediction: ', i, '; Confidence: ', score)
+
+    break    
