@@ -31,3 +31,8 @@ Example - image_path = 'Cropped_Images/oak_floor.jpg'
 Example - python inference.py
 
 Output - Prediction and confidence
+
+
+# New wood model for 5 new classes
+
+Weight link - https://drive.google.com/drive/folders/1a7oDX51mzy0QWBraSr-D9knCWjCZqqfz?usp=sharing
