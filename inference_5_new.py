@@ -12,10 +12,7 @@ import tensorflow_addons as tfa
 from sklearn.metrics import classification_report, confusion_matrix
 from tensorflow import keras
 from tensorflow.keras import layers
-from tensorflow.keras.applications.resnet50 import (ResNet50,
-                                                    decode_predictions,
-                                                    preprocess_input)
-from tensorflow.keras.applications.convnext import ConvNeXtBase, preprocess_input, ConvNeXtLarge
+from tensorflow.keras.applications.convnext import ConvNeXtBase, preprocess_input
 
 
 from tensorflow.keras.models import Model, Sequential
@@ -70,15 +67,7 @@ prediction = model.predict(img_preprocessed)[0]
 print('The prediction is :', prediction)
 id = np.argmax(prediction)
 score = prediction[id]
-'''
-classes = {'AcaciaEngineeredWood': 0, 'AcaciaPrefinishedWood': 1, 'AcaciaSolidWood': 2, 
-           'BambooEngineeredWood': 3, 'BambooSolidWood': 4, 'BirchEngineeredWood': 5, 'BirchPrefinishedWood': 6,
-           'BirchSolidWood': 7, 'CorkEngineeredWood': 8, 'CorkSolidWood': 9,
-           'CypressEngineeredWood':10 ,'EbonyEngineeredWood' : 11, 'HickoryEngineeredWood':12, 'HickoryPrefinishedWood':13,
-           'HickorySolidWood':14, 'MapleEngineeredWood':15, 'MaplePrefinishedWood':16, 'MapleSolidWood':17, 'OakEngineeredWood':18,
-           'OakPrefinishedWood':19, 'OakSolidWood':20, 'WalnutEngineeredWood':21, 
-           'WalnutPrefinishedWood':22}  #test_generator.class_indices
-'''
+
 classes = {'CedarEngineeredWood':0, 'ChestnutEngineeredWood':1, 'CypressEngineeredWood':2,
            'PineEngineeredWood':3, 'Rest_Classes':4, 'WengeEngineeredWood':5}
 
@@ -89,9 +78,9 @@ pred = key_list[position]
 print('Prediction: ', key_list[position], '; Confidence: ', score)
 
 
-main_classes = ['Acacia', 'Bamboo', 'Birch','Cedar', 'Chestnut', 'Cork' , 'Cypress', 'Ebony',  
-                'Hickory', 'Maple', 'Oak', 'Pine',  'Walnut', 'Wenge']
-
+main_classes = ['Cedar', 'Chestnut', 'Cypress', 'Pine', 'Wenge']
+  
+                
 for i in main_classes:
 
   if i in pred:
