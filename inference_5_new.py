@@ -40,7 +40,7 @@ for layer in base_model.layers:
   layer.trainable = False
 
 model = Model(inputs=base_model.input, outputs=out)
-model.load_weights('/home/ubuntu/material_project/checkpoints/ConvNeXtBase_1_segregated_7_classes/Jul-12-2022')
+model.load_weights('Jul-12-2022')
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', 
               metrics=[
